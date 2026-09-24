@@ -1,3 +1,5 @@
+""" main webapp server """
+
 from flask import Flask, render_template, request
 from EmotionDetection import emotion_detection
 
@@ -6,10 +8,12 @@ app = Flask("Emotion Detection")
 
 @app.route("/")
 def render_index_page():
+    """ main page rendering """
     return render_template("index.html")
 
 @app.route("/emotionDetector")
 def emotion_detector():
+    """ perform emotion detection """
 
     text_to_analyze = request.args.get("textToAnalyze")
     print (f"textToAnalyze: {text_to_analyze}")
@@ -24,13 +28,13 @@ def emotion_detector():
         f"fear: {result['fear']}, "
         f"joy: {result['joy']}, "
         f"sadness: {result['sadness']}"
-    )    
+    )
 
     return (
         f"For the given statement, the system response is {emotions_str} "
         f"and the dominant emotion is {result['dominant_emotion']}."
-    )    
+    )
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)  
+    app.run(host="0.0.0.0", port=5000, debug=True)
