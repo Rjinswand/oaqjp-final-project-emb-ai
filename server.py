@@ -16,7 +16,7 @@ def emotion_detector():
     result = emotion_detection.emotion_detector(text_to_analyze)
 
     if result["dominant_emotion"] is None:
-        return "Invalid text!"
+        return "Invalid text! Please try again!"
 
     emotions_str = (
         f"anger: {result['anger']}, "
